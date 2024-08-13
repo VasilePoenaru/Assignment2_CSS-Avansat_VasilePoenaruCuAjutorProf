@@ -1,0 +1,86 @@
+/* General body styles */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e02929; /* Pentru o mai bună vizibilitate */
+}
+
+/* Container for the entire animation */
+.container {
+    position: relative;
+    width: 800px; /* Width of the rectangle */
+    height: 600px; /* Height of the rectangle */
+    background-color: #050210;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+}
+
+/* First circle */
+#circle0 {
+    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Make it easier to position internal elements */
+    transform-origin: center center; /* Ensure rotation is centered */
+}
+
+/* Rotating colorful circle */
+#circle1 {
+    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(#fb5dad, #55fb9f,#b97aff);
+    box-shadow: 30px 0px 60px 1px #55fba050,
+                -30px 0px 60px 1px #55fba050,
+                0px 30px 60px 1px #b87aff70,
+                0px -30px 60px 1px #fb5dac70;
+    animation: rotating-animation 1.3s linear infinite;
+    filter: blur(1px) opacity(90%);
+    position: absolute; /* Ensure it's correctly positioned within circle0 */
+    top: 0; left: 0;
+}
+
+/* Inner circle */
+#circle2 {
+    background-color: #050210;
+    border-radius: 50%;
+    width: 350px;
+    height: 350px;
+    position: absolute; /* Position it within circle1 */
+    top: 25px; left: 25px; /* Correctly position inside the rotating circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Smallest expanding circle */
+#circle3 {
+    background-color: #b97aff;
+    border-radius: 50%;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    top: 50%; left: 50%; /* Center inside circle2 */
+    transform: translate(-50%, -50%); /* Center it exactly */
+    animation: boom-animation 1.3s ease-out infinite;
+}
+
+/* Keyframes for the rotating animation */
+@keyframes rotating-animation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Keyframes for the expanding circle animation */
+@keyframes boom-animation {
+    0% { transform-origin: center; opacity: 10%; }
+    100% { transform: scale(350, 350); transform-origin: center; opacity: 5%; }
+}
